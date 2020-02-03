@@ -6,8 +6,18 @@
 /*   By: ldumont <ldumont@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:41:53 by ldumont           #+#    #+#             */
-/*   Updated: 2020/02/03 15:46:18 by ldumont          ###   ########.fr       */
+/*   Updated: 2020/02/03 17:03:31 by ldumont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main (void)
+#include <stdlib.h>
+#include <stdio.h>
+
+int main (int argc, char *argv[])
+{
+  FILE* fichier = NULL;
+
+      fichier = fopen("test.txt", "r+");
+
+      return 0;
+  }
