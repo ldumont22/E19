@@ -11,13 +11,19 @@
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
-
 # define GET_NEXT_LINE_H
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+#include <fcntl.h>
 
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const  *s1, char const *s2);
-char	*ft_strdup(const char *s);
-char  *ft_strrchr(const char *s, int c);
+char	*ft_strndup(const char *s, const char c);
+char  *ft_strchr(const char *s, int c);
+int   ft_free(char **string, int nb);
+char *ft_lecture (int fd, char **line, char *rest);
+int   get_next_line(int fd, char **line);
+
+#endif
