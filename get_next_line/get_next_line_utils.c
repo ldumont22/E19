@@ -6,7 +6,7 @@
 /*   By: ldumont <ldumont@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 11:07:18 by ldumont           #+#    #+#             */
-/*   Updated: 2020/02/04 14:57:52 by ldumont          ###   ########.fr       */
+/*   Updated: 2020/02/05 18:06:07 by ldumont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,28 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *s, const char c)
 {
-	char	*n;
+	char	*src;
 	int		i;
 	int		size;
 
 	size = 0;
-	while (s[size])
+	while (s[size] != c)
 		size++;
-	if (!(n = (char *)malloc(sizeof(char) * size + 1)))
+	if (!(src = malloc(sizeof(*src) * (size + 1))))
 		return (NULL);
 	i = 0;
-	while (i <= size)
+	while (s[i] != '\0' && s[i] != c)
 	{
-		n[i] = s[i];
+		src[i] = s[i];
 		i++;
 	}
-	n[i] = '\0';
-	return (n);
+	src[i] = '\0';
+	return (src);
 }
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	char	*str;
 
