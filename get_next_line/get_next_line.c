@@ -6,7 +6,7 @@
 /*   By: ldumont <ldumont@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 15:41:53 by ldumont           #+#    #+#             */
-/*   Updated: 2020/02/04 16:26:57 by ldumont          ###   ########.fr       */
+/*   Updated: 2020/02/05 11:43:07 by ldumont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ char *ft_lecture (char *tab , int fd)
   return str;
 }
 
+
+
 int   get_next_line(int fd, char **line)
 {
   int i;
   int j;
   static char *tab;
 
-
+  j = 0;
   i = 0;
   while (count == \n);
     {
@@ -57,8 +59,12 @@ int main ()
 
   fd = open("txt.txt", O_RDONLY;
   get_next_line(fd, &line);
-  prinf("%")
+  printf("%s", line);
   get_next_line(fd, &line);
+  printf("%s", line);
+  get_next_line(fd, &line);
+  printf("%s", line);
+
       get_next_line(fd, 2);
       argc = 0;
       return 0;
