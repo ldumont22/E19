@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldumont <ldumont@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/03 15:41:53 by ldumont           #+#    #+#             */
-/*   Updated: 2020/02/11 09:07:46 by ldumont          ###   ########.fr       */
+/*   Created: 2020/02/06 17:01:12 by ldumont           #+#    #+#             */
+/*   Updated: 2020/02/11 08:45:50 by ldumont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_free(char **string, int nb)
+int   ft_free(char **string, int nb)
 {
 	if (*string)
 	{
