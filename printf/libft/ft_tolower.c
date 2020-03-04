@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldumont <ldumont@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldumont <ldumont@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/20 15:33:13 by ldumont           #+#    #+#             */
-/*   Updated: 2020/03/04 15:31:08 by ldumont          ###   ########.fr       */
+/*   Created: 2019/10/07 13:31:40 by ldumont           #+#    #+#             */
+/*   Updated: 2019/11/28 14:34:54 by ldumont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-int		main()
+int		ft_tolower(int c)
 {
-	printf("|%.03s\n|", NULL);
-	return (0);
+	if (c >= 65 && c <= 90)
+	{
+		c = c + 32;
+		return (c);
+	}
+	else
+		return (c);
 }
-

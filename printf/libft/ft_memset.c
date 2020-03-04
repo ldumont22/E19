@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldumont <ldumont@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldumont <ldumont@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/20 15:33:13 by ldumont           #+#    #+#             */
-/*   Updated: 2020/03/04 15:31:08 by ldumont          ###   ########.fr       */
+/*   Created: 2019/10/07 09:11:19 by ldumont           #+#    #+#             */
+/*   Updated: 2019/10/22 10:06:10 by ldumont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-int		main()
+void	*ft_memset(void *s, int c, size_t n)
 {
-	printf("|%.03s\n|", NULL);
-	return (0);
-}
+	size_t	i;
+	char	*str;
 
+	str = (char*)s;
+	i = 0;
+	while (n > 0)
+	{
+		str[i] = c;
+		i++;
+		n--;
+	}
+	return (s);
+}

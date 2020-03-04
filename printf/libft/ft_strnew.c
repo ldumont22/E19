@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldumont <ldumont@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldumont <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/20 15:33:13 by ldumont           #+#    #+#             */
-/*   Updated: 2020/03/04 15:31:08 by ldumont          ###   ########.fr       */
+/*   Created: 2019/11/28 11:34:44 by ldumont           #+#    #+#             */
+/*   Updated: 2019/11/28 14:19:48 by ldumont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-int		main()
+char	*ft_strnew(size_t size)
 {
-	printf("|%.03s\n|", NULL);
-	return (0);
-}
+	char *res;
 
+	if (!(res = (char *)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	return (ft_memset(res, '\0', size + 1));
+}

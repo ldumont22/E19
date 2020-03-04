@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldumont <ldumont@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldumont <ldumont@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/20 15:33:13 by ldumont           #+#    #+#             */
-/*   Updated: 2020/03/04 15:31:08 by ldumont          ###   ########.fr       */
+/*   Created: 2019/10/17 16:18:03 by ldumont           #+#    #+#             */
+/*   Updated: 2020/02/05 12:58:48 by ldumont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-int		main()
+void	ft_putstr_fd(char *s, int fd)
 {
-	printf("|%.03s\n|", NULL);
-	return (0);
-}
+	int i;
 
+	i = 0;
+	if (s == 0)
+		return ;
+	while (s[i])
+	{
+		write(fd, & s[i], 1);
+		i++;
+	}
+}

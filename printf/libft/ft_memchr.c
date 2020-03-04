@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldumont <ldumont@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ldumont <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/20 15:33:13 by ldumont           #+#    #+#             */
-/*   Updated: 2020/03/04 15:31:08 by ldumont          ###   ########.fr       */
+/*   Created: 2019/11/28 11:15:50 by ldumont           #+#    #+#             */
+/*   Updated: 2019/11/28 11:15:52 by ldumont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-int		main()
+void	*ft_memchr(const void *block, int c, size_t size)
 {
-	printf("|%.03s\n|", NULL);
-	return (0);
-}
+	unsigned char	*b;
+	unsigned char	d;
 
+	b = (unsigned char *)block;
+	d = (unsigned char)c;
+	while (size-- > 0)
+	{
+		if (*b == d)
+			return (b);
+		b++;
+	}
+	return (NULL);
+}
