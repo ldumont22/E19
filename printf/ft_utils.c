@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldumont <ldumont@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/02 13:59:13 by ldumont           #+#    #+#             */
+/*   Created: 2020/03/10 15:10:15 by ldumont           #+#    #+#             */
 /*   Updated: 2020/03/10 15:32:42 by ldumont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stdarg.h>
-# include <stdio.h>
+#include "../include/ft_printf.h"
 
-
-
-int	ft_printf(const char *format,...)
+void	ft_putstr(char *str, t_flags *flags)
 {
-	int nb;
-	va_list ap;
-	t_flags flags; // creation de la structure des flags
-	
-	ft_init_flags(&flags) // envoi des flags pour init 0
-	
-	 
+	while (*str != '\0')
+	{
+		ft_putchar(*str, flags;
+		str++;
+	}
+}
 
-	va_start(ap, format);
-	
-	
-	va_end(ap);
-}d
-
-
-int		main()
+void	ft_putchar(char c, t_flags *flags)
 {
-	//ft_print("|%.03s|", NULL)
-	printf("|%.03s|", "32");
-	return (0);
+	write(1, &c, 1);
+	flag->nb_print++;
 }
