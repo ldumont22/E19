@@ -16,7 +16,7 @@
 
 int		main()
 {
-	printf("|%.03i\n|", 38);
+	printf("Hello Edwin\n|");
 	return (0);
 }
 
