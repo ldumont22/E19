@@ -1,0 +1,10 @@
+Ceci est la premiere ligne de mon fichier
+Ceci est la deuxieme ligne de mon fichier
+Ceci devient la troisieme ligne de mon fichier
+Ceci pourrait etre la quatrieme ligne de mon fichier
+C'est la cinquieme ligne de mon fichier
+6 est le numero de cette ligne dans mon fichier
+Voici la septieme ligne de mon fichier
+oui t
+fin
+?
