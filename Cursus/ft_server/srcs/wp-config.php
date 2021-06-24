@@ -1,22 +1,4 @@
 <?php
-/**
- * La configuration de base de votre installation WordPress.
- *
- * Ce fichier contient les réglages de configuration suivants : réglages MySQL,
- * préfixe de table, clés secrètes, langue utilisée, et ABSPATH.
- * Vous pouvez en savoir plus à leur sujet en allant sur
- * {@link http://codex.wordpress.org/fr:Modifier_wp-config.php Modifier
- * wp-config.php}. C’est votre hébergeur qui doit vous donner vos
- * codes MySQL.
- *
- * Ce fichier est utilisé par le script de création de wp-config.php pendant
- * le processus d’installation. Vous n’avez pas à utiliser le site web, vous
- * pouvez simplement renommer ce fichier en "wp-config.php" et remplir les
- * valeurs.
- *
- * @package WordPress
- */
-
 
 // ** Réglages MySQL - Votre hébergeur doit vous fournir ces informations. ** //
 /** Nom de la base de données de WordPress. */

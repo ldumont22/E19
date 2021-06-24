@@ -6,66 +6,73 @@
 #    By: ldumont <ldumont@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/22 19:37:45 by ldumont           #+#    #+#              #
-#    Updated: 2021/02/22 19:42:37 by ldumont          ###   ########.fr        #
+#    Updated: 2021/06/24 18:59:40 by ldumont          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FROM debian:buster
+#Install OS in the container.
+FROM		debian:buster
 
-MAINTAINER ldumont <ldumont@student.s19.be>
+#Update server.
+RUN			apt-get update
+RUN			apt-get upgrade -y
 
-#### Utils ####
-RUN apt-get update -y \
-	&& apt-get clean -y \
-	&& apt-get install wget -y \
-	&& apt-get install curl -y \
-	&& apt-get install -y vim
 
-#### Install ngiFnx ####
-RUN apt-get install nginx -y
+RUN			apt-get install sysvinit-utils
 
-#### Install mariadb ####
-RUN apt-get -y install mariadb-server mariadb-client
+#Install Wget.
+RUN			apt-get -y install wget
 
-#### Install php ###
-RUN apt-get -y install php \
-	&& apt-get -y install php-mysql \
-	&& apt install -y php7.3 php7.3-fpm php7.3-mysql \
-	&& apt install -y php-mbstring
+#Install Nginx.
+RUN			apt-get -y install nginx
 
-#### Install phpMyAdmin ####
-RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.1/phpMyAdmin-5.0.1-all-languages.tar.gz
-RUN	tar -zxzf phpMyAdmin-5.0.1-all-languages.tar.gz \
-	&& mv phpMyAdmin-5.0.1-all-languages /var/www/html/phpMyAdmin \
-	&& rm phpMyAdmin-5.0.1-all-languages.tar.gz \
-	&& mkdir /var/www/html/phpMyAdmin/tmp
+RUN			apt-get -y install mariadb-server
+#Install PHP.
+RUN			apt-get -y install php-cgi php-common php-fpm php-pear php-mbstring
+RUN			apt-get -y install php-zip php-net-socket php-gd php-xml-util php-gettext php-mysql php-bcmath
+#Install MariaDB.
 
-#### Install SSL ####
-RUN mkdir ./mkcert
-ADD /srcs/mkcert ./mkcert/
-RUN chmod +x ./mkcert/mkcert && ./mkcert/mkcert -install && ./mkcert/mkcert localhost.com
 
-#### Install WordPress ####
-RUN cd /tmp \
-	&& curl -LO https://wordpress.org/latest.tar.gz \
-	&& tar xzvf latest.tar.gz \
-	&& mkdir /var/www/html/wordpress \
-	&& cp -a /tmp/wordpress/. /var/www/html/wordpress
+ENV INDEX="on"
 
-#### Permissions ####
-RUN chmod -R 755 /var/www/* \
-	&& chown -R www-data:www-data /var/www/ \
-	&& chmod 777 /var/www/html/phpMyAdmin/tmp
 
-#### Config ####
-RUN rm /var/www/html/*.html
-ADD /srcs/nginx.conf /etc/nginx/sites-available/
-ADD /srcs/nginx.conf /etc/nginx/sites-enabled/
-ADD /srcs/config.inc.php /var/www/html/phpMyAdmin/
-ADD /srcs/conf_mysql.sh ./
+RUN mkdir /var/www/localhost
 
-#### Ports d'ecoutes ####
-EXPOSE 80 443
+COPY srcs/localhost /etc/nginx/sites-available
 
-#### Commande demarrage ####
-CMD /bin/bash ./conf_mysql.sh && sleep infinity
+RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled
+
+WORKDIR		/var/www/localhost/
+
+
+COPY ./srcs/container_setup.sh ./
+
+COPY ./srcs/set_index.sh ./
+
+CMD  bash ./container_setup.sh;
+
+RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.1.0/phpMyAdmin-5.1.0-english.tar.gz
+
+RUN tar -xf phpMyAdmin-5.1.0-english.tar.gz && rm -rf phpMyAdmin-5.1.0-english.tar.gz
+
+RUN mv phpMyAdmin-5.1.0-english phpmyadmin
+
+COPY ./srcs/config.inc.php phpmyadmin
+
+
+# Download Wordpress using wget
+RUN wget https://wordpress.org/latest.tar.gz
+
+# Extract it and remove the .tar file
+RUN tar -xvzf latest.tar.gz && rm -rf latest.tar.gz 
+
+# Copy our configuration file inside the container
+COPY ./srcs/wp-config.php /var/www/localhost/wordpress
+
+# Change ownership and allow access to all the files
+# This is required for phpMyAdmin to have acces to all the data, otherwise it will display an error
+RUN chown -R www-data:www-data *
+RUN chmod -R 755 /var/www/*
+
+
+RUN openssl req -x509 -nodes -days 30 -subj "/C=BE/ST=Belgium/L=Brussels/O=42 Network/OU=s19/CN=tedison" -newkey rsa:2048 -keyout /etc/ssl/nginx-selfsigned.key -out /etc/ssl/nginx-selfsigned.crt;
